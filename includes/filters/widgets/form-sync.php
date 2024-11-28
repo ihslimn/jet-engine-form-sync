@@ -18,7 +18,7 @@ class Form_Sync extends \Elementor\Jet_Smart_Filters_Base_Widget {
 	}
 
 	public function get_icon() {
-		return 'jet-engine-icon-user-geolocation';
+		return '';
 	}
 
 	public function get_help_url() {}
