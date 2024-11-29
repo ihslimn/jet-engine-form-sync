@@ -16,6 +16,10 @@ class Manager {
 
 	public function register_widgets( $widgets_manager, $elementor_views ) {
 
+		if ( ! function_exists( 'jet_smart_filters' ) ) {
+			return;
+		}
+
 		$filters_path = jet_engine_form_sync()->get_path( 'includes/filters/widgets/' );
 
 		$elementor_views->register_widget(
