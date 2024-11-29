@@ -24,10 +24,9 @@
 			//console.log( this.current, this.formId );
 
             const event = new CustomEvent(
-				"jet-engine/form-sync/submit",
+				'jet-engine/form-sync/submit/' + this.formId,
 				{
 					detail: {
-						formId: this.formId,
                         status: this.current
 					},
 				}
@@ -53,19 +52,20 @@
 				super( $container, $filter );
 				
 				this.formId   = $container.data( 'form-id' );
+
+                if ( ! this.formId ) {
+                    return;
+                }
+
                 this.filterOn = $container.data( 'filter-on' );
 
-				document.addEventListener( 'jet-engine/form-sync/submit', this.sync.bind( this ) );
+				document.addEventListener( 'jet-engine/form-sync/submit/' + this.formId, this.sync.bind( this ) );
 			}
 
 			processData() {
 			}
 
             sync( e ) {
-                if ( ! e?.detail?.formId || + e.detail.formId !== + this.formId ) {
-                    return;
-                }
-
                 if ( this.filterOn === 'success' && e?.detail?.status !== 'success' ) {
                     return;
                 }
