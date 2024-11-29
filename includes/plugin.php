@@ -25,7 +25,10 @@ class Plugin {
 
 	public function __construct() {
 
-		if ( ! function_exists( 'jet_form_builder' ) || ! function_exists( 'jet_engine' ) ) {
+		if ( ! function_exists( 'jet_form_builder' ) ||
+		     ! function_exists( 'jet_engine' ) ||
+			 ! function_exists( 'jet_smart_filters' )
+		) {
 
 			add_action( 'admin_notices', function () {
 
@@ -33,7 +36,7 @@ class Plugin {
 				
 				$message = __(
 					'<b>Error:</b> <b>JetEngine - Form Sync</b> plugin requires' . 
-					' <b>JetFormBuilder</b> and <b>JetEngine</b> plugins to be installed and activated',
+					' <b>JetFormBuilder</b>, <b>JetEngine</b>, and <b>JetSmartFilters</b> plugins to be installed and activated',
 					'jfb-select-all'
 				);
 
