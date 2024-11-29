@@ -51,13 +51,15 @@
 				
 				super( $container, $filter );
 				
-				this.formId   = $container.data( 'form-id' );
+				this.formId = $container.data( 'form-id' );
 
                 if ( ! this.formId ) {
                     return;
                 }
 
-                this.filterOn = $container.data( 'filter-on' );
+                if ( $container.data( 'filter-on' ) ) {
+                    this.filterOn = $container.data( 'filter-on' );
+                }
 
 				document.addEventListener( 'jet-engine/form-sync/submit/' + this.formId, this.sync.bind( this ) );
 			}
