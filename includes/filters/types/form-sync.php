@@ -52,14 +52,12 @@ class Form_Sync extends \Jet_Smart_Filters_Filter_Base {
 	public function prepare_args( $args ) {
 
 		$content_provider     = isset( $args['content_provider'] ) ? $args['content_provider'] : false;
-		$additional_providers = isset( $args['additional_providers'] ) ? $args['additional_providers'] : false;
 
 		return array(
 			'options'              => false,
 			'query_type'           => 'form_sync',
 			'query_var'            => '',
 			'content_provider'     => $content_provider,
-			'additional_providers' => $additional_providers,
 			'apply_type'           => 'ajax',
 			'form_id'              => $args['form_id'] ?? '',
 			'filter_on'            => $args['filter_on'] ?? 'success',

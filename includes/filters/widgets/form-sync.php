@@ -117,7 +117,7 @@ class Form_Sync extends \Elementor\Jet_Smart_Filters_Base_Widget {
 		);
 
 		// Include Additional Providers Settings
-		include jet_smart_filters()->plugin_path( 'includes/widgets/common-controls/additional-providers.php' );
+		//include jet_smart_filters()->plugin_path( 'includes/widgets/common-controls/additional-providers.php' );
 
 		$this->end_controls_section();
 
