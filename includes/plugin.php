@@ -21,7 +21,7 @@ class Plugin {
 
 	private $plugin_path = '';
 
-	public $version = '1.0.0';
+	public $version = '1.0.1';
 
 	public function __construct() {
 
@@ -84,6 +84,12 @@ class Plugin {
 		require_once $this->get_path( 'includes/filters/manager.php' );
 		new Filters\Manager();
 
+		add_action( 'jet-form-builder/before-trigger-event', array( $this, 'set_form_id' ) );
+	}
+
+	public function set_form_id() {
+		$handler = jet_fb_action_handler();
+		$handler->response_data['__submitted_form_id'] = $handler->get_form_id();
 	}
 
 }

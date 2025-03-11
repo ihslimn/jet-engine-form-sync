@@ -9,7 +9,12 @@
 		} = window.JetPlugins.hooks;
 		
 		addAction( 'jet.fb.observe.after', 'form-sync/onSubmit', init );
-	
+		addAction( 'jfb.formless.submit', 'form-sync/formless', onFormless );
+
+		function onFormless( response ) {
+			dispatchEvent( response?.data?.__submitted_form_id, response.code );
+		}
+
 		function init( observable ) {
 	
 			//save form id to status ReactiveVar
@@ -18,21 +23,29 @@
 			observable.form.submitter.status.watch( onFormSubmit );
 			
 		}
-		
-		function onFormSubmit() {
-			//log status and form id to console
-			//console.log( this.current, this.formId );
 
-            const event = new CustomEvent(
-				'jet-engine/form-sync/submit/' + this.formId,
+		function dispatchEvent( formId = false, status = 'success' ) {
+			if ( ! formId ) {
+				return;
+			}
+
+			const event = new CustomEvent(
+				'jet-engine/form-sync/submit/' + formId,
 				{
 					detail: {
-                        status: this.current
+                        status: status
 					},
 				}
 			);
 			
 			document.dispatchEvent( event );
+		}
+		
+		function onFormSubmit() {
+			//log status and form id to console
+			//console.log( this.current, this.formId );
+
+            dispatchEvent( this.formId, this.current );
 		}
 	} );
 
