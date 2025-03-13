@@ -21,7 +21,7 @@ class Plugin {
 
 	private $plugin_path = '';
 
-	public $version = '1.0.1';
+	public $version = '1.0.2';
 
 	public function __construct() {
 

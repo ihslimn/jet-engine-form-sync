@@ -3,7 +3,7 @@
  * Plugin Name: JetEngine - Form Sync
  * Plugin URI:  
  * Description: 
- * Version:     1.0.1
+ * Version:     1.0.2
  * Author:      Crocoblock
  * Author URI:  https://crocoblock.com/
  * Text Domain: jsf-store-filters

@@ -16,9 +16,12 @@
 		}
 
 		function init( observable ) {
-	
+			
+			if ( ! observable?.form?.submitter?.status ) {
+				return;
+			}
 			//save form id to status ReactiveVar
-			observable.form.submitter.status.formId = observable.form.getFormId();
+			observable.form.submitter.status.observable = observable;
 			
 			observable.form.submitter.status.watch( onFormSubmit );
 			
@@ -41,13 +44,12 @@
 			document.dispatchEvent( event );
 		}
 		
-		function onFormSubmit() {
-			//log status and form id to console
-			//console.log( this.current, this.formId );
-
-            dispatchEvent( this.formId, this.current );
+		function onFormSubmit() {			
+            dispatchEvent( this.observable.form.getFormId(), this.current );
 		}
 	} );
+
+	let queryVarIndex = 1;
 
 	const initFormSyncFilter = function() {
 
@@ -63,6 +65,9 @@
 				const $filter = $container.find( '.jet-smart-filters-form-sync' );
 				
 				super( $container, $filter );
+
+				//ensure multiple filters work for the same provider
+				this.queryVar = queryVarIndex++;
 				
 				this.formId = $container.data( 'form-id' );
 
