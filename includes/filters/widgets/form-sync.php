@@ -69,13 +69,17 @@ class Form_Sync extends \Elementor\Jet_Smart_Filters_Base_Widget {
 			)
 		);
 
+		$providers = jet_smart_filters()->data->content_providers();
+
+		//$providers['jet-popup'] = 'JetPopup';
+
 		$this->add_control(
 			'content_provider',
 			array(
 				'label'   => __( 'This filter for', 'jet-smart-filters' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => '',
-				'options' => jet_smart_filters()->data->content_providers(),
+				'options' => $providers,
 			)
 		);
 
