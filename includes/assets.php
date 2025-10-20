@@ -12,10 +12,11 @@ if ( ! defined( 'WPINC' ) ) {
 class Assets {
 
 	public function __construct() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'frontend' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'register_scripts' ), 9 );
 	}
 
-	public function frontend() {
+	public function register_scripts() {
 		wp_register_script(
 			'jet-engine-form-sync-frontend',
 			Plugin::instance()->get_url( '/assets/js/frontend.js' ),
